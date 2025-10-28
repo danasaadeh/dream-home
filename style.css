@@ -1,0 +1,73 @@
+:root {
+  --bg: #ffffff;
+  --color-h: #fef7f2;
+  --color: #ddc7bb;
+  --texth: #2b1b12;
+  --text: #4f3527;
+
+  --black: #000000;
+}
+
+.text-h {
+  color: var(--texth);
+}
+.text {
+  color: var(--text);
+}
+.color {
+  color: var(--color);
+}
+.header {
+  background-color: var(--color-h);
+}
+.filter-bg {
+  background-color: var(--color);
+}
+/* 
+* {
+  outline: 1px solid rgba(255, 0, 0, 0.1);
+} */
+
+/* Nav Bar */
+.logo-hover:hover {
+  opacity: 0.9;
+  transform: translateY(-10px);
+}
+.links:hover {
+  color: var(--text);
+}
+.sign-up-btn {
+  background-color: var(--texth);
+}
+.sign-up-btn:hover {
+  background-color: var(--text);
+  opacity: 0.9;
+  transform: translateY(-5px);
+}
+
+.dream:hover {
+  opacity: 0.8;
+  filter: none;
+  transform: scale(1.01);
+}
+/* Feature Section */
+.feat_card {
+  background-color: var(--color);
+}
+
+.nav-btn {
+  background-color: var(--texth);
+}
+
+.nav-btn:hover {
+  background-color: var(--text);
+}
+/* Contact */
+.email_input {
+  background-color: var(--color) !important;
+  color: var(--text-h);
+}
+/* Footer */
+.footer {
+  background-color: var(--color);
+}
