@@ -20,10 +20,10 @@
   </head>
   <body>
     <!-- Nav Bar -->
-    <header class="header">
+    <header class="header sticky top-0 z-40">
       <nav
         aria-label="Global"
-        class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
+        class="mx-auto flex max-w-7xl items-center justify-between p-4 lg:p-6 lg:px-8"
       >
         <div class="flex lg:flex-1">
           <a href="#" class="-m-1.5 p-1.5">
@@ -34,7 +34,19 @@
             />
           </a>
         </div>
-        <div class="flex lg:hidden">
+
+        <div class="flex items-center space-x-2 lg:hidden">
+          <button
+            id="mobile-search-button"
+            class="p-2 rounded-full hover:bg-gray-100 transition-colors duration-200"
+          >
+            <img src="./images/search.svg" alt="search" class="w-6 h-6" />
+          </button>
+
+          <a href="#" class="p-2">
+            <img src="./images/user.svg" alt="person" class="w-6 h-6" />
+          </a>
+
           <button
             type="button"
             command="show-modal"
@@ -58,12 +70,14 @@
             </svg>
           </button>
         </div>
+
         <el-popover-group class="hidden lg:flex lg:gap-x-12">
           <a href="#" class="font-bold text-h links">Home</a>
           <a href="#" class="font-bold text-h links">Service</a>
           <a href="#" class="font-bold text-h links">Agents</a>
           <a href="#" class="font-bold text-h links">Contact</a>
         </el-popover-group>
+
         <div class="hidden lg:flex lg:flex-1 lg:justify-end items-center">
           <div
             id="search-widget"
@@ -87,6 +101,7 @@
           </div>
 
           <img src="./images/user.svg" alt="person" class="mx-3" />
+
           <button
             type="button"
             class="text-white mx-2 sign-up-btn focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 me-2 focus:outline-none"
@@ -95,6 +110,7 @@
           </button>
         </div>
       </nav>
+
       <el-dialog>
         <dialog id="mobile-menu" class="backdrop:bg-transparent lg:hidden">
           <div tabindex="0" class="fixed inset-0 focus:outline-none">
@@ -129,6 +145,7 @@
                   </svg>
                 </button>
               </div>
+
               <div class="mt-6 flow-root">
                 <div class="-my-6 divide-y divide-gray-500/10">
                   <div class="space-y-2 py-6">
