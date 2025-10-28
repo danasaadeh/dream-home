@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -36,6 +36,15 @@
         </div>
 
         <div class="flex items-center space-x-2 lg:hidden">
+          <button
+            id="rtl-toggle-mobile"
+            type="button"
+            class="p-2 rounded-full hover:bg-gray-100 transition-colors duration-200 text-sm font-bold text-h"
+            aria-label="Toggle Right-to-Left Layout"
+          >
+            RTL
+          </button>
+
           <button
             id="mobile-search-button"
             class="p-2 rounded-full hover:bg-gray-100 transition-colors duration-200"
@@ -79,6 +88,15 @@
         </el-popover-group>
 
         <div class="hidden lg:flex lg:flex-1 lg:justify-end items-center">
+          <button
+            id="rtl-toggle-desktop"
+            type="button"
+            class="p-2 rounded-full hover:bg-gray-100 transition-colors duration-200 text-sm font-bold text-h"
+            aria-label="Toggle Right-to-Left Layout"
+          >
+            RTL
+          </button>
+
           <div
             id="search-widget"
             class="flex items-center group relative transition-all duration-300 ease-in-out"
@@ -944,26 +962,57 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script>
+      function toggleRTL() {
+        const html = document.documentElement;
+
+        const currentDir = html.getAttribute("dir") || "ltr";
+        const newDir = currentDir === "rtl" ? "ltr" : "rtl";
+        html.setAttribute("dir", newDir);
+
+        console.log(`Layout direction set to: ${newDir}`);
+      }
+
       document.addEventListener("DOMContentLoaded", () => {
         const searchButton = document.getElementById("search-button");
         const searchWidget = document.getElementById("search-widget");
         const searchInput = document.getElementById("search-input");
 
-        searchButton.addEventListener("click", (event) => {
-          event.stopPropagation();
+        if (searchButton) {
+          searchButton.addEventListener("click", (event) => {
+            event.stopPropagation();
+            searchWidget.classList.toggle("search-active");
+            if (searchWidget.classList.contains("search-active")) {
+              searchInput.focus();
+            }
+          });
 
-          searchWidget.classList.toggle("search-active");
+          document.addEventListener("click", (event) => {
+            if (!searchWidget.contains(event.target)) {
+              searchWidget.classList.remove("search-active");
+            }
+          });
+        }
 
-          if (searchWidget.classList.contains("search-active")) {
-            searchInput.focus();
-          }
-        });
+        const mobileSearchButton = document.getElementById(
+          "mobile-search-button"
+        );
+        if (mobileSearchButton) {
+          mobileSearchButton.addEventListener("click", () => {
+            console.log(
+              "Mobile Search clicked! This is where you would open a full-screen search modal."
+            );
+          });
+        }
 
-        document.addEventListener("click", (event) => {
-          if (!searchWidget.contains(event.target)) {
-            searchWidget.classList.remove("search-active");
-          }
-        });
+        const rtlToggleDesktop = document.getElementById("rtl-toggle-desktop");
+        if (rtlToggleDesktop) {
+          rtlToggleDesktop.addEventListener("click", toggleRTL);
+        }
+
+        const rtlToggleMobile = document.getElementById("rtl-toggle-mobile");
+        if (rtlToggleMobile) {
+          rtlToggleMobile.addEventListener("click", toggleRTL);
+        }
       });
     </script>
     <script src="./script.js"></script>
